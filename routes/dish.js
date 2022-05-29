@@ -1,70 +1,82 @@
+const Dish = require("../models/Dish");
 const router = require("express").Router();
-const Product = require("../models/Product");
 const {verifyTokenAsAdmin} = require("./verifyJwtToken");
 
 
 
- //Create product
+ //Create dish
 
 router.post("/", verifyTokenAsAdmin,  async (req,res)=>{
-const newProduct = new Product(req.body)
+
+const newDish = new Dish(req.body)
+
 try {
-    const savedProduct  = await newProduct .save();
-    res.status(201).json(savedProduct )
+    const savedDish = await newDish.save();
+    res.status(201).json(savedDish)
 } catch (error) {
     res.status(500).json(error)
 }
 })
 
 
- //Update product
+ //Update dish
 
 router.put("/:id", verifyTokenAsAdmin, async (req, res) => {
   
     try {
-      const updatedProduct  = await Product.findByIdAndUpdate(
+      const updatedDish = await Dish.findByIdAndUpdate(
         req.params.id,
         {
           $set: req.body,
         },
         { new: true }
       );
-      res.status(200).json(updatedProduct);
+      res.status(200).json(updatedDish);
     } catch (error) {
       res.status(500).json(error);
     }
   });
 
 
- //Delete product
+ //Delete dish
 
 router.delete("/:id", verifyTokenAsAdmin, async (req, res) => {
     try {
-      await Product.findByIdAndDelete(req.params.id);
-      res.status(200).json("Product deleted.");
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  });
-
-  //Get product
-
-  router.get("/:id", async (req, res) => {
-    try {
-      const product = await Product.findById(req.params.id);
-      res.status(200).json(product);
+      await Dish.findByIdAndDelete(req.params.id);
+      res.status(200).json("Dish deleted.");
     } catch (error) {
       res.status(500).json(error);
     }
   });
   
 
-  //Get products
+  //Get dish
 
-  router.get("/",  async (req, res) => {
+  router.get("/:id", async (req, res) => {
     try {
-      const products = await Product.find();
-      res.status(200).json(products);
+      const dish = await Dish.findById(req.params.id);
+      res.status(200).json(dish);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
+  
+  //Get dishes
+  
+  router.get("/",  async (req, res) => {
+
+    const  ingredientsQuery = req.query.ingredients;
+
+    try {
+      let dishes;
+      if(ingredientsQuery){
+        dishes = await Dish.find({ingredients:{
+            $in:[ingredientsQuery],
+        }, });}
+    else{
+          dishes = await Dish.find();
+      }
+      res.status(200).json(dishes);
     } catch (error) {
       res.status(500).json(error);
     }

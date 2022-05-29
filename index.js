@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const castomerRoute = require("./routes/castomer");
 const productRoute = require("./routes/product");
+const dishRoute = require("./routes/dish");
 
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/castomers", castomerRoute);
 app.use("/api/products", productRoute);
+app.use("/api/dishes", dishRoute);
 
 
 
