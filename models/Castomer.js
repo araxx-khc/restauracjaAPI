@@ -9,7 +9,7 @@ const CastomerSchema = new mongoose.Schema(
             type:Boolean,
             default:false,
         },
-        isAdmin:{
+        admin:{
             type:Boolean,
             default:false,
         },
