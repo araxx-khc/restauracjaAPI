@@ -2,9 +2,8 @@ const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema(
     {
-        dishId:{type:String, required:true},
         products:[{
-            productId:{
+            productName:{
                 type:String
             },
             quantity:{

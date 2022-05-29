@@ -5,7 +5,7 @@ const DishSchema = new mongoose.Schema(
         title:{type:String, required:true, unique:true},
         ingredients:{type:Array, required:true},
         categories:{type:Array, required:true},
-        weight:{type:Number},
+        weightOrSize:{type:Number},
         price:{type:Number, required:true}  
     },
     {timestamps:true}

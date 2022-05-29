@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 
 const authRoute = require("./routes/auth");
 const castomerRoute = require("./routes/castomer");
+const productRoute = require("./routes/product");
 
 
 const app = express();
@@ -20,6 +21,7 @@ mongoose.connect(
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/castomers", castomerRoute);
+app.use("/api/products", productRoute);
 
 
 
