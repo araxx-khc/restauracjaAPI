@@ -37,12 +37,12 @@ router.post("/login", async(req,res)=>{
 
         !castomer && res.status(401).json("Your username is wrong.");
 
-        const descryptedPassword = CryptoJS.AES.decrypt(
+        const hashedPassword = CryptoJS.AES.decrypt(
             castomer.password,
             process.env.PASS_SEC
         );
 
-        const correctPassword = descryptedPassword.toString(CryptoJS.enc.Utf8)
+        const correctPassword = hashedPassword.toString(CryptoJS.enc.Utf8)
 
 
         correctPassword!==req.body.password && res.status(401).json("Your password is wrong.");
