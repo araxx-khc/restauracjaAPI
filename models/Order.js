@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const OrderSchema = new mongoose.Schema(
     {
-        userId:{type:String, required:true},
+        castomerId:{type:String, required:true},
         dishes:[{
             dishId:{
                 type:String
@@ -15,7 +15,7 @@ const OrderSchema = new mongoose.Schema(
     ],
     status:{
         type:String,
-        default:"The order is ordered.",
+        default:"Ordering...",
     },
     amount:{type:Number, required:true},
     },

@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const castomerRoute = require("./routes/castomer");
 const productRoute = require("./routes/product");
 const dishRoute = require("./routes/dish");
+const orderRoute = require("./routes/order");
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/castomers", castomerRoute);
 app.use("/api/products", productRoute);
 app.use("/api/dishes", dishRoute);
+app.use("/api/orders", orderRoute);
 
 
 
